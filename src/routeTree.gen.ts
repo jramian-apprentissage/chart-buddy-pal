@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as SortiesRouteImport } from './routes/sorties'
 import { Route as RecrutementsRouteImport } from './routes/recrutements'
 import { Route as PipelineRouteImport } from './routes/pipeline'
+import { Route as FichesPosteTemplateRouteImport } from './routes/fiches-poste.template'
 import { Route as FichesPosteRouteImport } from './routes/fiches-poste'
 import { Route as EntreesRouteImport } from './routes/entrees'
 import { Route as CommandesFormulaireFccRouteImport } from './routes/commandes.formulaire-fcc'
@@ -32,6 +33,11 @@ const RecrutementsRoute = RecrutementsRouteImport.update({
 const PipelineRoute = PipelineRouteImport.update({
   id: '/pipeline',
   path: '/pipeline',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FichesPosteTemplateRoute = FichesPosteTemplateRouteImport.update({
+  id: '/fiches-poste/template',
+  path: '/fiches-poste/template',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FichesPosteRoute = FichesPosteRouteImport.update({
@@ -72,6 +78,7 @@ export interface FileRoutesByFullPath {
   '/commandes/formulaire-fcc': typeof CommandesFormulaireFccRoute
   '/entrees': typeof EntreesRoute
   '/fiches-poste': typeof FichesPosteRoute
+  '/fiches-poste/template': typeof FichesPosteTemplateRoute
   '/pipeline': typeof PipelineRoute
   '/recrutements': typeof RecrutementsRoute
   '/sorties': typeof SortiesRoute
@@ -83,6 +90,7 @@ export interface FileRoutesByTo {
   '/commandes/formulaire-fcc': typeof CommandesFormulaireFccRoute
   '/entrees': typeof EntreesRoute
   '/fiches-poste': typeof FichesPosteRoute
+  '/fiches-poste/template': typeof FichesPosteTemplateRoute
   '/pipeline': typeof PipelineRoute
   '/recrutements': typeof RecrutementsRoute
   '/sorties': typeof SortiesRoute
@@ -95,6 +103,7 @@ export interface FileRoutesById {
   '/commandes/formulaire-fcc': typeof CommandesFormulaireFccRoute
   '/entrees': typeof EntreesRoute
   '/fiches-poste': typeof FichesPosteRoute
+  '/fiches-poste/template': typeof FichesPosteTemplateRoute
   '/pipeline': typeof PipelineRoute
   '/recrutements': typeof RecrutementsRoute
   '/sorties': typeof SortiesRoute
@@ -108,6 +117,7 @@ export interface FileRouteTypes {
     | '/commandes/formulaire-fcc'
     | '/entrees'
     | '/fiches-poste'
+    | '/fiches-poste/template'
     | '/pipeline'
     | '/recrutements'
     | '/sorties'
@@ -119,6 +129,7 @@ export interface FileRouteTypes {
     | '/commandes/formulaire-fcc'
     | '/entrees'
     | '/fiches-poste'
+    | '/fiches-poste/template'
     | '/pipeline'
     | '/recrutements'
     | '/sorties'
@@ -130,6 +141,7 @@ export interface FileRouteTypes {
     | '/commandes/formulaire-fcc'
     | '/entrees'
     | '/fiches-poste'
+    | '/fiches-poste/template'
     | '/pipeline'
     | '/recrutements'
     | '/sorties'
@@ -142,6 +154,7 @@ export interface RootRouteChildren {
   CommandesFormulaireFccRoute: typeof CommandesFormulaireFccRoute
   EntreesRoute: typeof EntreesRoute
   FichesPosteRoute: typeof FichesPosteRoute
+  FichesPosteTemplateRoute: typeof FichesPosteTemplateRoute
   PipelineRoute: typeof PipelineRoute
   RecrutementsRoute: typeof RecrutementsRoute
   SortiesRoute: typeof SortiesRoute
@@ -168,6 +181,13 @@ declare module '@tanstack/react-router' {
       path: '/pipeline'
       fullPath: '/pipeline'
       preLoaderRoute: typeof PipelineRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/fiches-poste/template': {
+      id: '/fiches-poste/template'
+      path: '/fiches-poste/template'
+      fullPath: '/fiches-poste/template'
+      preLoaderRoute: typeof FichesPosteTemplateRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/fiches-poste': {
@@ -222,6 +242,7 @@ const rootRouteChildren: RootRouteChildren = {
   CommandesFormulaireFccRoute: CommandesFormulaireFccRoute,
   EntreesRoute: EntreesRoute,
   FichesPosteRoute: FichesPosteRoute,
+  FichesPosteTemplateRoute: FichesPosteTemplateRoute,
   PipelineRoute: PipelineRoute,
   RecrutementsRoute: RecrutementsRoute,
   SortiesRoute: SortiesRoute,
