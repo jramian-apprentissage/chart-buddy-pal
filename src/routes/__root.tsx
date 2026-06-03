@@ -3,6 +3,7 @@ import {
   Outlet,
   Link,
   createRootRouteWithContext,
+  useLocation,
   useRouter,
 } from "@tanstack/react-router";
 import { PanelLeft } from "lucide-react";
@@ -107,27 +108,33 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const location = useLocation();
+  const isStandaloneForm = location.pathname.startsWith("/commandes/formulaire-fcc");
 
   return (
     <QueryClientProvider client={queryClient}>
-      <SidebarProvider>
-        <AppSidebar />
-        <SidebarInset>
-          <header className="sticky top-0 z-10 flex h-14 items-center gap-3 border-b border-border bg-background/95 px-6 backdrop-blur supports-[backdrop-filter]:bg-background/80">
-            <SidebarTrigger className="text-foreground/80 hover:text-foreground">
-              <PanelLeft className="h-4 w-4" />
-            </SidebarTrigger>
-            <div className="h-5 w-px bg-border" />
-            <p className="text-sm font-medium text-muted-foreground">
-              <span className="text-foreground">SIRH</span> · Démo
-            </p>
-          </header>
-          <main className="min-h-[calc(100svh-3.5rem)] bg-background">
-            {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-            <Outlet />
-          </main>
-        </SidebarInset>
-      </SidebarProvider>
+      {isStandaloneForm ? (
+        <Outlet />
+      ) : (
+        <SidebarProvider>
+          <AppSidebar />
+          <SidebarInset>
+            <header className="sticky top-0 z-10 flex h-14 items-center gap-3 border-b border-border bg-background/95 px-6 backdrop-blur supports-[backdrop-filter]:bg-background/80">
+              <SidebarTrigger className="text-foreground/80 hover:text-foreground">
+                <PanelLeft className="h-4 w-4" />
+              </SidebarTrigger>
+              <div className="h-5 w-px bg-border" />
+              <p className="text-sm font-medium text-muted-foreground">
+                <span className="text-foreground">SIRH</span> · Démo
+              </p>
+            </header>
+            <main className="min-h-[calc(100svh-3.5rem)] bg-background">
+              {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+              <Outlet />
+            </main>
+          </SidebarInset>
+        </SidebarProvider>
+      )}
     </QueryClientProvider>
   );
 }
