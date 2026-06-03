@@ -14,6 +14,7 @@ import { Route as RecrutementsRouteImport } from './routes/recrutements'
 import { Route as PipelineRouteImport } from './routes/pipeline'
 import { Route as FichesPosteRouteImport } from './routes/fiches-poste'
 import { Route as EntreesRouteImport } from './routes/entrees'
+import { Route as CommandesFormulaireFccRouteImport } from './routes/commandes.formulaire-fcc'
 import { Route as CommandesRouteImport } from './routes/commandes'
 import { Route as CollaborateursRouteImport } from './routes/collaborateurs'
 import { Route as IndexRouteImport } from './routes/index'
@@ -43,6 +44,11 @@ const EntreesRoute = EntreesRouteImport.update({
   path: '/entrees',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CommandesFormulaireFccRoute = CommandesFormulaireFccRouteImport.update({
+  id: '/commandes/formulaire-fcc',
+  path: '/commandes/formulaire-fcc',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CommandesRoute = CommandesRouteImport.update({
   id: '/commandes',
   path: '/commandes',
@@ -63,6 +69,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/collaborateurs': typeof CollaborateursRoute
   '/commandes': typeof CommandesRoute
+  '/commandes/formulaire-fcc': typeof CommandesFormulaireFccRoute
   '/entrees': typeof EntreesRoute
   '/fiches-poste': typeof FichesPosteRoute
   '/pipeline': typeof PipelineRoute
@@ -73,6 +80,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/collaborateurs': typeof CollaborateursRoute
   '/commandes': typeof CommandesRoute
+  '/commandes/formulaire-fcc': typeof CommandesFormulaireFccRoute
   '/entrees': typeof EntreesRoute
   '/fiches-poste': typeof FichesPosteRoute
   '/pipeline': typeof PipelineRoute
@@ -84,6 +92,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/collaborateurs': typeof CollaborateursRoute
   '/commandes': typeof CommandesRoute
+  '/commandes/formulaire-fcc': typeof CommandesFormulaireFccRoute
   '/entrees': typeof EntreesRoute
   '/fiches-poste': typeof FichesPosteRoute
   '/pipeline': typeof PipelineRoute
@@ -96,6 +105,7 @@ export interface FileRouteTypes {
     | '/'
     | '/collaborateurs'
     | '/commandes'
+    | '/commandes/formulaire-fcc'
     | '/entrees'
     | '/fiches-poste'
     | '/pipeline'
@@ -106,6 +116,7 @@ export interface FileRouteTypes {
     | '/'
     | '/collaborateurs'
     | '/commandes'
+    | '/commandes/formulaire-fcc'
     | '/entrees'
     | '/fiches-poste'
     | '/pipeline'
@@ -116,6 +127,7 @@ export interface FileRouteTypes {
     | '/'
     | '/collaborateurs'
     | '/commandes'
+    | '/commandes/formulaire-fcc'
     | '/entrees'
     | '/fiches-poste'
     | '/pipeline'
@@ -127,6 +139,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CollaborateursRoute: typeof CollaborateursRoute
   CommandesRoute: typeof CommandesRoute
+  CommandesFormulaireFccRoute: typeof CommandesFormulaireFccRoute
   EntreesRoute: typeof EntreesRoute
   FichesPosteRoute: typeof FichesPosteRoute
   PipelineRoute: typeof PipelineRoute
@@ -171,6 +184,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EntreesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/commandes/formulaire-fcc': {
+      id: '/commandes/formulaire-fcc'
+      path: '/commandes/formulaire-fcc'
+      fullPath: '/commandes/formulaire-fcc'
+      preLoaderRoute: typeof CommandesFormulaireFccRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/commandes': {
       id: '/commandes'
       path: '/commandes'
@@ -199,6 +219,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CollaborateursRoute: CollaborateursRoute,
   CommandesRoute: CommandesRoute,
+  CommandesFormulaireFccRoute: CommandesFormulaireFccRoute,
   EntreesRoute: EntreesRoute,
   FichesPosteRoute: FichesPosteRoute,
   PipelineRoute: PipelineRoute,
