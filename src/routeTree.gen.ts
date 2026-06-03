@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TemplatesFormulairesRouteImport } from './routes/templates-formulaires'
 import { Route as SortiesRouteImport } from './routes/sorties'
 import { Route as RecrutementsRouteImport } from './routes/recrutements'
 import { Route as PipelineRouteImport } from './routes/pipeline'
@@ -21,6 +22,11 @@ import { Route as CommandesRouteImport } from './routes/commandes'
 import { Route as CollaborateursRouteImport } from './routes/collaborateurs'
 import { Route as IndexRouteImport } from './routes/index'
 
+const TemplatesFormulairesRoute = TemplatesFormulairesRouteImport.update({
+  id: '/templates-formulaires',
+  path: '/templates-formulaires',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SortiesRoute = SortiesRouteImport.update({
   id: '/sorties',
   path: '/sorties',
@@ -89,6 +95,7 @@ export interface FileRoutesByFullPath {
   '/pipeline': typeof PipelineRoute
   '/recrutements': typeof RecrutementsRoute
   '/sorties': typeof SortiesRoute
+  '/templates-formulaires': typeof TemplatesFormulairesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -102,6 +109,7 @@ export interface FileRoutesByTo {
   '/pipeline': typeof PipelineRoute
   '/recrutements': typeof RecrutementsRoute
   '/sorties': typeof SortiesRoute
+  '/templates-formulaires': typeof TemplatesFormulairesRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -116,6 +124,7 @@ export interface FileRoutesById {
   '/pipeline': typeof PipelineRoute
   '/recrutements': typeof RecrutementsRoute
   '/sorties': typeof SortiesRoute
+  '/templates-formulaires': typeof TemplatesFormulairesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -131,6 +140,7 @@ export interface FileRouteTypes {
     | '/pipeline'
     | '/recrutements'
     | '/sorties'
+    | '/templates-formulaires'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -144,6 +154,7 @@ export interface FileRouteTypes {
     | '/pipeline'
     | '/recrutements'
     | '/sorties'
+    | '/templates-formulaires'
   id:
     | '__root__'
     | '/'
@@ -157,6 +168,7 @@ export interface FileRouteTypes {
     | '/pipeline'
     | '/recrutements'
     | '/sorties'
+    | '/templates-formulaires'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -171,10 +183,18 @@ export interface RootRouteChildren {
   PipelineRoute: typeof PipelineRoute
   RecrutementsRoute: typeof RecrutementsRoute
   SortiesRoute: typeof SortiesRoute
+  TemplatesFormulairesRoute: typeof TemplatesFormulairesRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/templates-formulaires': {
+      id: '/templates-formulaires'
+      path: '/templates-formulaires'
+      fullPath: '/templates-formulaires'
+      preLoaderRoute: typeof TemplatesFormulairesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sorties': {
       id: '/sorties'
       path: '/sorties'
@@ -267,6 +287,7 @@ const rootRouteChildren: RootRouteChildren = {
   PipelineRoute: PipelineRoute,
   RecrutementsRoute: RecrutementsRoute,
   SortiesRoute: SortiesRoute,
+  TemplatesFormulairesRoute: TemplatesFormulairesRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
