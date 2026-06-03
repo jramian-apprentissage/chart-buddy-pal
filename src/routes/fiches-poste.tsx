@@ -1,9 +1,11 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
+import { FilePlus2 } from "lucide-react";
 import { fichesPoste, type FichePoste } from "@/lib/mock-data";
 import { PageHeader } from "@/components/page-header";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 import { StatusBadge } from "@/components/status-badge";
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { Badge } from "@/components/ui/badge";
@@ -30,10 +32,16 @@ function FichesPostePage() {
       <PageHeader
         title="Fiches de poste talents"
         description="Référentiel standardisé des besoins recrutement."
-        actionLabel="Nouvelle fiche"
-        onAction={() => alert("Création de fiche — à brancher")}
       >
-        <Input placeholder="Rechercher…" value={q} onChange={(e) => setQ(e.target.value)} className="w-56" />
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
+          <Input placeholder="Rechercher…" value={q} onChange={(e) => setQ(e.target.value)} className="w-full sm:w-56" />
+          <Button asChild className="gap-2 whitespace-nowrap">
+            <Link to="/fiches-poste/template">
+              <FilePlus2 className="h-4 w-4" />
+              Nouvelle fiche
+            </Link>
+          </Button>
+        </div>
       </PageHeader>
 
       <div className="p-6">
