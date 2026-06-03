@@ -5,8 +5,7 @@ import {
   Briefcase,
   Users,
   UserCheck,
-  LogIn,
-  LogOut,
+  ListTodo,
   LayoutDashboard,
 } from "lucide-react";
 
@@ -32,10 +31,9 @@ const salesItems = [
 
 const rhItems = [
   { title: "Recrutements", url: "/recrutements", icon: Briefcase },
+  { title: "Mes tâches", url: "/mes-taches", icon: ListTodo },
   { title: "Pipeline talents", url: "/pipeline", icon: Users },
   { title: "Collaborateurs", url: "/collaborateurs", icon: UserCheck },
-  { title: "Suivi entrées", url: "/entrees", icon: LogIn },
-  { title: "Suivi sorties", url: "/sorties", icon: LogOut },
 ];
 
 export function AppSidebar() {
