@@ -1,7 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { ClipboardPlus } from "lucide-react";
-import { commandes, type Commande } from "@/lib/mock-data";
+import { commandes as demoCommandes, type Commande } from "@/lib/mock-data";
+import { readStoredFccCommandes } from "@/lib/fcc-orders";
 import { PageHeader } from "@/components/page-header";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Input } from "@/components/ui/input";
@@ -18,16 +19,40 @@ export const Route = createFileRoute("/commandes")({
 function CommandesPage() {
   const [q, setQ] = useState("");
   const [selected, setSelected] = useState<Commande | null>(null);
+  const [localCommandes, setLocalCommandes] = useState<Commande[]>([]);
+
+  const refreshLocalCommandes = () => {
+    setLocalCommandes(readStoredFccCommandes());
+  };
+
+  useEffect(() => {
+    refreshLocalCommandes();
+
+    const handleFocus = () => refreshLocalCommandes();
+    const handleStorage = (event: StorageEvent) => {
+      if (event.key === "mon-ambassadeur:fcc-commandes") refreshLocalCommandes();
+    };
+
+    window.addEventListener("focus", handleFocus);
+    window.addEventListener("storage", handleStorage);
+
+    return () => {
+      window.removeEventListener("focus", handleFocus);
+      window.removeEventListener("storage", handleStorage);
+    };
+  }, []);
+
+  const allCommandes = useMemo(() => [...localCommandes, ...demoCommandes], [localCommandes]);
 
   const filtered = useMemo(
     () =>
-      commandes.filter((c) =>
+      allCommandes.filter((c) =>
         [c.numero, c.client, c.poste, c.commercial, c.responsableRH]
           .join(" ")
           .toLowerCase()
           .includes(q.toLowerCase()),
       ),
-    [q],
+    [allCommandes, q],
   );
 
   return (
@@ -58,15 +83,20 @@ function CommandesPage() {
             <div>
               <h2 className="text-sm font-semibold text-foreground">Démarrer une nouvelle commande client</h2>
               <p className="mt-1 text-sm text-muted-foreground">
-                Le workflow commence maintenant par le remplissage du formulaire FCC. Après validation, la commande alimentera cet onglet.
+                Remplis le formulaire FCC : la commande sera enregistrée localement puis affichée dans cet onglet.
               </p>
             </div>
-            <Button asChild variant="outline" className="gap-2 whitespace-nowrap">
-              <Link to="/commandes/formulaire-fcc">
-                <ClipboardPlus className="h-4 w-4" />
-                Ouvrir le formulaire
-              </Link>
-            </Button>
+            <div className="flex flex-col gap-2 sm:flex-row">
+              <Button variant="outline" onClick={refreshLocalCommandes}>
+                Actualiser
+              </Button>
+              <Button asChild variant="outline" className="gap-2 whitespace-nowrap">
+                <Link to="/commandes/formulaire-fcc">
+                  <ClipboardPlus className="h-4 w-4" />
+                  Ouvrir le formulaire
+                </Link>
+              </Button>
+            </div>
           </div>
         </div>
 
