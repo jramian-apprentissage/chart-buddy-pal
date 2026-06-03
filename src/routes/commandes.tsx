@@ -1,9 +1,11 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
+import { ClipboardPlus } from "lucide-react";
 import { commandes, type Commande } from "@/lib/mock-data";
 import { PageHeader } from "@/components/page-header";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 import { StatusBadge } from "@/components/status-badge";
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { Badge } from "@/components/ui/badge";
@@ -33,18 +35,41 @@ function CommandesPage() {
       <PageHeader
         title="Commandes clients (FCC)"
         description="Toutes les commandes recrutement reçues par l'équipe Sales."
-        actionLabel="Nouvelle commande"
-        onAction={() => alert("Création de commande — à brancher")}
       >
-        <Input
-          placeholder="Rechercher…"
-          value={q}
-          onChange={(e) => setQ(e.target.value)}
-          className="w-56"
-        />
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
+          <Input
+            placeholder="Rechercher…"
+            value={q}
+            onChange={(e) => setQ(e.target.value)}
+            className="w-full sm:w-56"
+          />
+          <Button asChild className="gap-2 whitespace-nowrap">
+            <Link to="/commandes/formulaire-fcc">
+              <ClipboardPlus className="h-4 w-4" />
+              Créer une commande FCC
+            </Link>
+          </Button>
+        </div>
       </PageHeader>
 
       <div className="p-6">
+        <div className="mb-4 rounded-lg border border-border bg-card p-4">
+          <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
+            <div>
+              <h2 className="text-sm font-semibold text-foreground">Démarrer une nouvelle commande client</h2>
+              <p className="mt-1 text-sm text-muted-foreground">
+                Le workflow commence maintenant par le remplissage du formulaire FCC. Après validation, la commande alimentera cet onglet.
+              </p>
+            </div>
+            <Button asChild variant="outline" className="gap-2 whitespace-nowrap">
+              <Link to="/commandes/formulaire-fcc">
+                <ClipboardPlus className="h-4 w-4" />
+                Ouvrir le formulaire
+              </Link>
+            </Button>
+          </div>
+        </div>
+
         <div className="overflow-hidden rounded-lg border border-border bg-card">
           <Table>
             <TableHeader>
