@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as SortiesRouteImport } from './routes/sorties'
 import { Route as RecrutementsRouteImport } from './routes/recrutements'
 import { Route as PipelineRouteImport } from './routes/pipeline'
+import { Route as MesTachesRouteImport } from './routes/mes-taches'
 import { Route as FichesPosteTemplateRouteImport } from './routes/fiches-poste.template'
 import { Route as FichesPosteRouteImport } from './routes/fiches-poste'
 import { Route as EntreesRouteImport } from './routes/entrees'
@@ -33,6 +34,11 @@ const RecrutementsRoute = RecrutementsRouteImport.update({
 const PipelineRoute = PipelineRouteImport.update({
   id: '/pipeline',
   path: '/pipeline',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MesTachesRoute = MesTachesRouteImport.update({
+  id: '/mes-taches',
+  path: '/mes-taches',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FichesPosteTemplateRoute = FichesPosteTemplateRouteImport.update({
@@ -79,6 +85,7 @@ export interface FileRoutesByFullPath {
   '/entrees': typeof EntreesRoute
   '/fiches-poste': typeof FichesPosteRoute
   '/fiches-poste/template': typeof FichesPosteTemplateRoute
+  '/mes-taches': typeof MesTachesRoute
   '/pipeline': typeof PipelineRoute
   '/recrutements': typeof RecrutementsRoute
   '/sorties': typeof SortiesRoute
@@ -91,6 +98,7 @@ export interface FileRoutesByTo {
   '/entrees': typeof EntreesRoute
   '/fiches-poste': typeof FichesPosteRoute
   '/fiches-poste/template': typeof FichesPosteTemplateRoute
+  '/mes-taches': typeof MesTachesRoute
   '/pipeline': typeof PipelineRoute
   '/recrutements': typeof RecrutementsRoute
   '/sorties': typeof SortiesRoute
@@ -104,6 +112,7 @@ export interface FileRoutesById {
   '/entrees': typeof EntreesRoute
   '/fiches-poste': typeof FichesPosteRoute
   '/fiches-poste/template': typeof FichesPosteTemplateRoute
+  '/mes-taches': typeof MesTachesRoute
   '/pipeline': typeof PipelineRoute
   '/recrutements': typeof RecrutementsRoute
   '/sorties': typeof SortiesRoute
@@ -118,6 +127,7 @@ export interface FileRouteTypes {
     | '/entrees'
     | '/fiches-poste'
     | '/fiches-poste/template'
+    | '/mes-taches'
     | '/pipeline'
     | '/recrutements'
     | '/sorties'
@@ -130,6 +140,7 @@ export interface FileRouteTypes {
     | '/entrees'
     | '/fiches-poste'
     | '/fiches-poste/template'
+    | '/mes-taches'
     | '/pipeline'
     | '/recrutements'
     | '/sorties'
@@ -142,6 +153,7 @@ export interface FileRouteTypes {
     | '/entrees'
     | '/fiches-poste'
     | '/fiches-poste/template'
+    | '/mes-taches'
     | '/pipeline'
     | '/recrutements'
     | '/sorties'
@@ -155,6 +167,7 @@ export interface RootRouteChildren {
   EntreesRoute: typeof EntreesRoute
   FichesPosteRoute: typeof FichesPosteRoute
   FichesPosteTemplateRoute: typeof FichesPosteTemplateRoute
+  MesTachesRoute: typeof MesTachesRoute
   PipelineRoute: typeof PipelineRoute
   RecrutementsRoute: typeof RecrutementsRoute
   SortiesRoute: typeof SortiesRoute
@@ -181,6 +194,13 @@ declare module '@tanstack/react-router' {
       path: '/pipeline'
       fullPath: '/pipeline'
       preLoaderRoute: typeof PipelineRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mes-taches': {
+      id: '/mes-taches'
+      path: '/mes-taches'
+      fullPath: '/mes-taches'
+      preLoaderRoute: typeof MesTachesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/fiches-poste/template': {
@@ -243,6 +263,7 @@ const rootRouteChildren: RootRouteChildren = {
   EntreesRoute: EntreesRoute,
   FichesPosteRoute: FichesPosteRoute,
   FichesPosteTemplateRoute: FichesPosteTemplateRoute,
+  MesTachesRoute: MesTachesRoute,
   PipelineRoute: PipelineRoute,
   RecrutementsRoute: RecrutementsRoute,
   SortiesRoute: SortiesRoute,
