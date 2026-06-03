@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { AlertTriangle, Briefcase, CalendarDays, CheckCircle2, Clock3, ClipboardList, FileText, Flame, LayoutDashboard, ListTodo, ShieldAlert, UserCheck, Users } from "lucide-react";
+import { AlertTriangle, Briefcase, CalendarDays, CheckCircle2, Clock3, ClipboardList, FileText, Flame, ListTodo, ShieldAlert, UserCheck, Users } from "lucide-react";
+import logoFull from "@/assets/logos/logo-full-dark.svg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -91,19 +92,14 @@ const directionStats = [
 function Dashboard() {
   return (
     <div className="min-h-full bg-muted/30 p-6">
-      <header className="mb-6 rounded-2xl border border-border bg-card p-6 shadow-sm">
-        <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-          <div>
-            <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
-              <LayoutDashboard className="h-3.5 w-3.5" /> Dashboard opérationnel
-            </div>
-            <h1 className="mt-3 text-3xl font-semibold tracking-tight">Pilotage RH, commandes et recrutement</h1>
-            <p className="mt-2 max-w-3xl text-sm text-muted-foreground">Vue de synthèse pour suivre la charge opérationnelle, les recrutements à risque, les candidatures du jour et les priorités de l’équipe.</p>
-          </div>
-          <div className="rounded-xl border border-border bg-background px-4 py-3 text-sm">
-            <p className="font-medium">Aujourd’hui</p>
-            <p className="text-muted-foreground">Mercredi 3 juin 2026</p>
-          </div>
+      <header className="mb-6 flex items-center gap-6 rounded-2xl bg-primary p-8 text-primary-foreground">
+        <img src={logoFull} alt="Mon Ambassadeur" className="hidden h-16 sm:block brightness-0 invert" />
+        <div>
+          <p className="text-xs uppercase tracking-widest text-primary-foreground/70">SIRH · DÉMO ÉQUIPE</p>
+          <h1 className="mt-2 text-3xl font-semibold">Bienvenue dans le SIRH Mon Ambassadeur</h1>
+          <p className="mt-2 max-w-2xl text-sm text-primary-foreground/80">
+            Centralisez les commandes clients, gérez vos recrutements de bout en bout, suivez votre vivier de talents et la vie de vos collaborateurs — le tout depuis une interface unique.
+          </p>
         </div>
       </header>
 
