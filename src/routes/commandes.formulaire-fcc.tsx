@@ -132,10 +132,6 @@ function FormulaireFccPage() {
           <h1 className="mt-7 max-w-xl text-4xl font-black tracking-tight text-[#2b001b] sm:text-5xl lg:text-6xl">
             Lancez votre commande en quelques minutes.
           </h1>
-          <p className="mt-5 max-w-xl text-base leading-7 text-[#594a54] sm:text-lg">
-            Complétez cette fiche pour permettre à l’équipe Mon Ambassadeur de comprendre le besoin,
-            cadrer le poste et démarrer la recherche avec les bonnes informations.
-          </p>
 
           <div className="mt-8 grid gap-3 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
             <FeatureCard icon={ClipboardCheck} title="Brief clair" text="Toutes les infos utiles au lancement." />
