@@ -168,7 +168,7 @@ function FormulaireFccPage() {
                   </div>
                 </div>
                 <Badge className="w-fit rounded-full bg-[#fff45f] px-4 py-2 text-[#2b001b] hover:bg-[#fff45f]">
-                  Enregistré localement
+                  Enregistré 
                 </Badge>
               </div>
             </div>
@@ -251,7 +251,7 @@ function FormulaireFccPage() {
 
                 <div className="flex flex-col gap-4 bg-[#fffdf0] p-7 sm:flex-row sm:items-center sm:justify-between sm:p-9">
                   <p className="max-w-xl text-sm leading-6 text-[#594a54]">
-                    En validant, la demande sera enregistrée localement et affichée dans l’onglet Commandes Clients / FCC.
+                    En validant, la demande sera enregistrée et affichée dans l’onglet Commandes Clients / FCC.
                   </p>
                   <Button type="submit" size="lg" className="h-12 rounded-full bg-[#2b001b] px-7 text-white hover:bg-[#43002a]" disabled={submitted}>
                     {submitted ? "Commande enregistrée" : "Créer la demande"} <ArrowRight className="ml-2 h-4 w-4" />
