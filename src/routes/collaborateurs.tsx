@@ -232,6 +232,21 @@ function CollaborateursPage() {
             </div>
           </div>
         </div>
+
+        <div className="rounded-xl border border-border bg-card p-4 shadow-sm">
+          <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+            <div>
+              <h2 className="text-base font-semibold text-foreground">Menu collaborateur</h2>
+              <p className="mt-1 text-sm text-muted-foreground">
+                Accède aux modèles de formulaires utilisés pour les candidatures, onboarding et documents RH.
+              </p>
+            </div>
+            <Button className="gap-2 whitespace-nowrap" onClick={() => { window.location.href = "/templates-formulaires"; }}>
+              Templates formulaires
+              <ArrowRight className="h-4 w-4" />
+            </Button>
+          </div>
+        </div>
       </div>
 
       <Sheet open={!!selected} onOpenChange={(o) => !o && setSelected(null)}>
