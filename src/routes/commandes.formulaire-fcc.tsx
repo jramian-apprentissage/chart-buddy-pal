@@ -86,42 +86,43 @@ function FormulaireFccPage() {
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setSubmitted(true);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    const formPanel = document.getElementById("fcc-form-panel");
+    formPanel?.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
-    <div className="min-h-screen overflow-hidden bg-[#f7f3ea] text-[#1f1933]">
+    <div className="flex h-screen flex-col overflow-hidden bg-[#f8f7f2] text-[#2b001b]">
       <div className="pointer-events-none fixed inset-0 -z-10">
-        <div className="absolute left-[-12rem] top-[-12rem] h-[34rem] w-[34rem] rounded-full bg-[#ffd84d]/40 blur-3xl" />
-        <div className="absolute right-[-10rem] top-24 h-[32rem] w-[32rem] rounded-full bg-[#4c2a85]/20 blur-3xl" />
-        <div className="absolute bottom-[-12rem] left-1/3 h-[26rem] w-[26rem] rounded-full bg-white/70 blur-3xl" />
+        <div className="absolute left-[-12rem] top-[-12rem] h-[34rem] w-[34rem] rounded-full bg-[#fff45f]/35 blur-3xl" />
+        <div className="absolute right-[-10rem] top-24 h-[32rem] w-[32rem] rounded-full bg-[#2b001b]/10 blur-3xl" />
+        <div className="absolute bottom-[-12rem] left-1/3 h-[26rem] w-[26rem] rounded-full bg-white/80 blur-3xl" />
       </div>
 
-      <header className="mx-auto flex w-full max-w-7xl items-center justify-between px-5 py-6 sm:px-8">
+      <header className="mx-auto flex h-20 w-full max-w-7xl shrink-0 items-center justify-between px-5 sm:px-8">
         <div className="flex items-center gap-3">
-          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white shadow-sm ring-1 ring-black/5">
+          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white shadow-sm ring-1 ring-black/10">
             <img src={logoMark} alt="Mon Ambassadeur" className="h-8 w-8" />
           </div>
           <div>
-            <p className="text-sm font-bold leading-none text-[#2e2352]">Mon Ambassadeur</p>
-            <p className="mt-1 text-xs font-medium text-[#6f6680]">Demande de recrutement</p>
+            <p className="text-sm font-bold leading-none text-[#2b001b]">Mon Ambassadeur</p>
+            <p className="mt-1 text-xs font-medium text-[#6d5f68]">Demande de recrutement</p>
           </div>
         </div>
-        <Badge className="hidden rounded-full bg-white px-4 py-2 text-[#2e2352] shadow-sm ring-1 ring-black/5 hover:bg-white sm:inline-flex">
+        <Badge className="hidden rounded-full border border-black/10 bg-white px-4 py-2 text-[#2b001b] shadow-sm hover:bg-white sm:inline-flex">
           Formulaire sécurisé
         </Badge>
       </header>
 
-      <main className="mx-auto grid w-full max-w-7xl gap-8 px-5 pb-14 sm:px-8 lg:grid-cols-[0.9fr_1.25fr] lg:items-start">
-        <section className="pt-6 lg:sticky lg:top-8 lg:pt-16">
-          <div className="inline-flex items-center gap-2 rounded-full bg-white/80 px-4 py-2 text-sm font-semibold text-[#4c2a85] shadow-sm ring-1 ring-black/5 backdrop-blur">
-            <Sparkles className="h-4 w-4" /> Nouvelle commande client
+      <main className="mx-auto grid min-h-0 w-full max-w-7xl flex-1 gap-8 overflow-y-auto px-5 pb-8 sm:px-8 lg:grid-cols-[0.82fr_1.18fr] lg:overflow-hidden">
+        <section className="self-start pt-8 lg:h-full lg:overflow-hidden lg:pt-16">
+          <div className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-[#2b001b] shadow-sm ring-1 ring-black/10">
+            <Sparkles className="h-4 w-4 text-[#2b001b]" /> Nouvelle commande client
           </div>
 
-          <h1 className="mt-7 max-w-xl text-4xl font-black tracking-tight text-[#251b45] sm:text-5xl lg:text-6xl">
-            Lancez une recherche de talents en quelques minutes.
+          <h1 className="mt-7 max-w-xl text-4xl font-black tracking-tight text-[#2b001b] sm:text-5xl lg:text-6xl">
+            Lancez votre commande en quelques minutes.
           </h1>
-          <p className="mt-5 max-w-xl text-base leading-7 text-[#675f76] sm:text-lg">
+          <p className="mt-5 max-w-xl text-base leading-7 text-[#594a54] sm:text-lg">
             Complétez cette fiche pour permettre à l’équipe Mon Ambassadeur de comprendre le besoin,
             cadrer le poste et démarrer la recherche avec les bonnes informations.
           </p>
@@ -132,60 +133,60 @@ function FormulaireFccPage() {
             <FeatureCard icon={BriefcaseBusiness} title="Suivi interne" text="Création d’une commande FCC exploitable." />
           </div>
 
-          <div className="mt-8 rounded-3xl bg-[#2e2352] p-6 text-white shadow-2xl shadow-[#2e2352]/20">
-            <p className="text-sm font-semibold text-[#ffd84d]">À préparer avant de commencer</p>
+          <div className="mt-8 rounded-3xl bg-[#2b001b] p-6 text-white shadow-2xl shadow-[#2b001b]/20">
+            <p className="text-sm font-semibold text-[#fff45f]">À préparer avant de commencer</p>
             <ul className="mt-4 space-y-3 text-sm text-white/80">
-              <li className="flex gap-3"><span className="text-[#ffd84d]">•</span> Informations entreprise et contact client.</li>
-              <li className="flex gap-3"><span className="text-[#ffd84d]">•</span> Description du poste et compétences attendues.</li>
-              <li className="flex gap-3"><span className="text-[#ffd84d]">•</span> Planning souhaité, budget et conditions commerciales.</li>
+              <li className="flex gap-3"><span className="text-[#fff45f]">•</span> Informations entreprise et contact client.</li>
+              <li className="flex gap-3"><span className="text-[#fff45f]">•</span> Description du poste et compétences attendues.</li>
+              <li className="flex gap-3"><span className="text-[#fff45f]">•</span> Planning souhaité, budget et conditions commerciales.</li>
             </ul>
           </div>
         </section>
 
-        <section>
+        <section id="fcc-form-panel" className="min-h-0 pb-8 lg:h-full lg:overflow-y-auto lg:pr-2">
           {submitted && (
-            <div className="mb-6 rounded-3xl border border-[#bca7ff]/40 bg-white/90 p-5 shadow-xl shadow-[#4c2a85]/10 backdrop-blur">
+            <div className="mb-6 rounded-3xl border border-[#fff45f]/60 bg-white/95 p-5 shadow-xl shadow-[#2b001b]/10 backdrop-blur">
               <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                 <div className="flex items-start gap-3">
-                  <div className="mt-0.5 rounded-full bg-[#dff7e8] p-2 text-[#15803d]">
+                  <div className="mt-0.5 rounded-full bg-[#fff45f]/30 p-2 text-[#2b001b]">
                     <CheckCircle2 className="h-5 w-5" />
                   </div>
                   <div>
-                    <p className="font-bold text-[#251b45]">Demande prête à être enregistrée</p>
-                    <p className="mt-1 text-sm text-[#675f76]">
+                    <p className="font-bold text-[#2b001b]">Demande prête à être enregistrée</p>
+                    <p className="mt-1 text-sm text-[#594a54]">
                       Aperçu : {commandeNumber} · {form.nomEntreprise || "Entreprise non renseignée"} · {form.intitulePoste || "Poste non renseigné"}
                     </p>
                   </div>
                 </div>
-                <Badge className="w-fit rounded-full bg-[#ffd84d] px-4 py-2 text-[#251b45] hover:bg-[#ffd84d]">
+                <Badge className="w-fit rounded-full bg-[#fff45f] px-4 py-2 text-[#2b001b] hover:bg-[#fff45f]">
                   Brouillon validé
                 </Badge>
               </div>
             </div>
           )}
 
-          <Card className="overflow-hidden rounded-[2rem] border-white/80 bg-white/95 shadow-2xl shadow-[#4c2a85]/12 backdrop-blur">
-            <CardHeader className="border-b border-[#efeaf7] bg-gradient-to-br from-white to-[#fbf7ea] p-7 sm:p-9">
+          <Card className="overflow-hidden rounded-[2rem] border-white/80 bg-white/95 shadow-2xl shadow-[#2b001b]/10 backdrop-blur">
+            <CardHeader className="border-b border-[#eee7dc] bg-gradient-to-br from-white to-[#fffdf0] p-7 sm:p-9">
               <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
                 <div>
-                  <Badge className="mb-4 rounded-full bg-[#4c2a85] px-4 py-1.5 text-white hover:bg-[#4c2a85]">
+                  <Badge className="mb-4 rounded-full bg-[#2b001b] px-4 py-1.5 text-white hover:bg-[#2b001b]">
                     FCC · Commande client
                   </Badge>
-                  <CardTitle className="text-2xl font-black tracking-tight text-[#251b45] sm:text-3xl">
+                  <CardTitle className="text-2xl font-black tracking-tight text-[#2b001b] sm:text-3xl">
                     Formulaire de demande
                   </CardTitle>
-                  <CardDescription className="mt-3 max-w-2xl text-sm leading-6 text-[#675f76]">
+                  <CardDescription className="mt-3 max-w-2xl text-sm leading-6 text-[#594a54]">
                     Les champs marqués comme essentiels permettent de créer la commande client et de générer la fiche associée.
                   </CardDescription>
                 </div>
-                <div className="rounded-2xl bg-[#ffd84d]/30 px-4 py-3 text-sm font-bold text-[#3b2a08] ring-1 ring-[#ffd84d]/50">
+                <div className="rounded-2xl bg-[#fff45f]/45 px-4 py-3 text-sm font-bold text-[#2b001b] ring-1 ring-[#fff45f]">
                   {commandeNumber}
                 </div>
               </div>
             </CardHeader>
 
             <CardContent className="p-0">
-              <form id="fcc-form" onSubmit={handleSubmit} className="divide-y divide-[#efeaf7]">
+              <form id="fcc-form" onSubmit={handleSubmit} className="divide-y divide-[#eee7dc]">
                 <FormSection number="01" title="Informations entreprise" description="Identité de l’entreprise cliente.">
                   <div className="grid gap-5 md:grid-cols-2">
                     <TextField label="ID entreprise" value={form.idEntreprise} onChange={(value) => updateField("idEntreprise", value)} placeholder="Ex. ENT-000123" required />
@@ -239,11 +240,11 @@ function FormulaireFccPage() {
                   </div>
                 </FormSection>
 
-                <div className="flex flex-col gap-4 bg-[#fbf7ea] p-7 sm:flex-row sm:items-center sm:justify-between sm:p-9">
-                  <p className="max-w-xl text-sm leading-6 text-[#675f76]">
+                <div className="flex flex-col gap-4 bg-[#fffdf0] p-7 sm:flex-row sm:items-center sm:justify-between sm:p-9">
+                  <p className="max-w-xl text-sm leading-6 text-[#594a54]">
                     En validant, la demande sera prête à alimenter l’onglet Commandes Clients / FCC et à générer la fiche de commande.
                   </p>
-                  <Button type="submit" size="lg" className="h-12 rounded-full bg-[#4c2a85] px-7 text-white hover:bg-[#3c216a]">
+                  <Button type="submit" size="lg" className="h-12 rounded-full bg-[#2b001b] px-7 text-white hover:bg-[#43002a]">
                     Créer la demande <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 </div>
@@ -258,12 +259,12 @@ function FormulaireFccPage() {
 
 function FeatureCard({ icon: Icon, title, text }: { icon: typeof ClipboardCheck; title: string; text: string }) {
   return (
-    <div className="rounded-3xl bg-white/85 p-5 shadow-lg shadow-[#4c2a85]/8 ring-1 ring-black/5 backdrop-blur">
-      <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-2xl bg-[#ffd84d]/35 text-[#4c2a85]">
+    <div className="rounded-3xl bg-white p-5 shadow-lg shadow-[#2b001b]/8 ring-1 ring-black/10">
+      <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-2xl bg-[#fff45f]/55 text-[#2b001b]">
         <Icon className="h-5 w-5" />
       </div>
-      <p className="font-bold text-[#251b45]">{title}</p>
-      <p className="mt-1 text-sm leading-5 text-[#675f76]">{text}</p>
+      <p className="font-bold text-[#2b001b]">{title}</p>
+      <p className="mt-1 text-sm leading-5 text-[#594a54]">{text}</p>
     </div>
   );
 }
@@ -272,11 +273,11 @@ function FormSection({ number, title, description, children }: { number: string;
   return (
     <section className="grid gap-6 p-7 sm:p-9 lg:grid-cols-[170px_minmax(0,1fr)]">
       <div>
-        <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#4c2a85] text-sm font-black text-white shadow-lg shadow-[#4c2a85]/20">
+        <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#2b001b] text-sm font-black text-white shadow-lg shadow-[#2b001b]/20">
           {number}
         </div>
-        <h2 className="mt-4 text-lg font-black text-[#251b45]">{title}</h2>
-        {description && <p className="mt-2 text-sm leading-5 text-[#756d83]">{description}</p>}
+        <h2 className="mt-4 text-lg font-black text-[#2b001b]">{title}</h2>
+        {description && <p className="mt-2 text-sm leading-5 text-[#6d5f68]">{description}</p>}
       </div>
       <div>{children}</div>
     </section>
@@ -286,8 +287,8 @@ function FormSection({ number, title, description, children }: { number: string;
 function TextField({ label, value, onChange, type = "text", placeholder, required = false, className = "" }: { label: string; value: string; onChange: (value: string) => void; type?: string; placeholder?: string; required?: boolean; className?: string }) {
   return (
     <div className={className}>
-      <Label className="text-sm font-bold text-[#2e2352]">{label}{required && <span className="ml-1 text-[#4c2a85]">*</span>}</Label>
-      <Input className="mt-2 h-12 rounded-2xl border-[#e6dff0] bg-white text-[#251b45] shadow-sm transition focus-visible:ring-[#4c2a85]" type={type} value={value} placeholder={placeholder} required={required} onChange={(event) => onChange(event.target.value)} />
+      <Label className="text-sm font-bold text-[#2b001b]">{label}{required && <span className="ml-1 text-[#2b001b]">*</span>}</Label>
+      <Input className="mt-2 h-12 rounded-2xl border-[#ded6dd] bg-white text-[#2b001b] shadow-sm transition focus-visible:ring-[#2b001b]" type={type} value={value} placeholder={placeholder} required={required} onChange={(event) => onChange(event.target.value)} />
     </div>
   );
 }
@@ -295,8 +296,8 @@ function TextField({ label, value, onChange, type = "text", placeholder, require
 function TextAreaField({ label, value, onChange, placeholder, className = "" }: { label: string; value: string; onChange: (value: string) => void; placeholder?: string; className?: string }) {
   return (
     <div className={className}>
-      <Label className="text-sm font-bold text-[#2e2352]">{label}</Label>
-      <Textarea className="mt-2 min-h-28 rounded-2xl border-[#e6dff0] bg-white text-[#251b45] shadow-sm transition focus-visible:ring-[#4c2a85]" value={value} placeholder={placeholder} onChange={(event) => onChange(event.target.value)} />
+      <Label className="text-sm font-bold text-[#2b001b]">{label}</Label>
+      <Textarea className="mt-2 min-h-28 rounded-2xl border-[#ded6dd] bg-white text-[#2b001b] shadow-sm transition focus-visible:ring-[#2b001b]" value={value} placeholder={placeholder} onChange={(event) => onChange(event.target.value)} />
     </div>
   );
 }
@@ -304,9 +305,9 @@ function TextAreaField({ label, value, onChange, placeholder, className = "" }: 
 function SelectField({ label, value, onChange, options }: { label: string; value: string; onChange: (value: string) => void; options: string[] }) {
   return (
     <div>
-      <Label className="text-sm font-bold text-[#2e2352]">{label}</Label>
+      <Label className="text-sm font-bold text-[#2b001b]">{label}</Label>
       <Select value={value} onValueChange={onChange}>
-        <SelectTrigger className="mt-2 h-12 rounded-2xl border-[#e6dff0] bg-white text-[#251b45] shadow-sm focus:ring-[#4c2a85]">
+        <SelectTrigger className="mt-2 h-12 rounded-2xl border-[#ded6dd] bg-white text-[#2b001b] shadow-sm focus:ring-[#2b001b]">
           <SelectValue placeholder="Sélectionner" />
         </SelectTrigger>
         <SelectContent>
