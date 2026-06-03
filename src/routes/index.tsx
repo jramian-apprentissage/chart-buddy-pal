@@ -92,7 +92,7 @@ const directionStats = [
 function Dashboard() {
   return (
     <div className="min-h-full bg-muted/30 p-6">
-      <header className="mb-6 flex items-center gap-6 rounded-2xl bg-primary p-8 text-primary-foreground">
+      <header className=" sticky top-4 z-50 mb-6 flex items-center gap-6 rounded-2xl bg-primary/95 backdrop-blur-md p-8 text-primary-foreground shadow-xl ">
         <img src={logoFull} alt="Mon Ambassadeur" className="hidden h-16 sm:block brightness-0 invert" />
         <div>
           <p className="text-xs uppercase tracking-widest text-primary-foreground/70">SIRH · DÉMO ÉQUIPE</p>
