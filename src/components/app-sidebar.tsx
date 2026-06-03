@@ -7,6 +7,7 @@ import {
   UserCheck,
   ListTodo,
   LayoutDashboard,
+  ClipboardList,
 } from "lucide-react";
 
 import {
@@ -34,6 +35,7 @@ const rhItems = [
   { title: "Mes tâches", url: "/mes-taches", icon: ListTodo },
   { title: "Pipeline talents", url: "/pipeline", icon: Users },
   { title: "Collaborateurs", url: "/collaborateurs", icon: UserCheck },
+  { title: "Templates formulaires", url: "/templates-formulaires", icon: ClipboardList },
 ];
 
 export function AppSidebar() {
