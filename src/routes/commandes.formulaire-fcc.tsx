@@ -10,6 +10,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
+import { addFccCommande } from "@/lib/fcc-orders";
 
 export const Route = createFileRoute("/commandes/formulaire-fcc")({
   head: () => ({ meta: [{ title: "Demande de recrutement — Mon Ambassadeur" }] }),
@@ -71,6 +72,7 @@ const initialForm: FccForm = {
 function FormulaireFccPage() {
   const [form, setForm] = useState<FccForm>(initialForm);
   const [submitted, setSubmitted] = useState(false);
+  const [createdCommandeNumber, setCreatedCommandeNumber] = useState<string | null>(null);
 
   const commandeNumber = useMemo(() => {
     const now = new Date();
@@ -85,9 +87,17 @@ function FormulaireFccPage() {
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    const createdCommande = addFccCommande(form);
+    setCreatedCommandeNumber(createdCommande.numero);
     setSubmitted(true);
+
     const formPanel = document.getElementById("fcc-form-panel");
     formPanel?.scrollTo({ top: 0, behavior: "smooth" });
+
+    window.setTimeout(() => {
+      window.location.href = "/commandes";
+    }, 900);
   };
 
   return (
@@ -152,14 +162,17 @@ function FormulaireFccPage() {
                     <CheckCircle2 className="h-5 w-5" />
                   </div>
                   <div>
-                    <p className="font-bold text-[#2b001b]">Demande prête à être enregistrée</p>
+                    <p className="font-bold text-[#2b001b]">Commande enregistrée</p>
                     <p className="mt-1 text-sm text-[#594a54]">
-                      Aperçu : {commandeNumber} · {form.nomEntreprise || "Entreprise non renseignée"} · {form.intitulePoste || "Poste non renseigné"}
+                      {createdCommandeNumber || commandeNumber} · {form.nomEntreprise || "Entreprise non renseignée"} · {form.intitulePoste || "Poste non renseigné"}
+                    </p>
+                    <p className="mt-1 text-xs font-medium text-[#6d5f68]">
+                      Redirection vers l’onglet Commandes Clients / FCC…
                     </p>
                   </div>
                 </div>
                 <Badge className="w-fit rounded-full bg-[#fff45f] px-4 py-2 text-[#2b001b] hover:bg-[#fff45f]">
-                  Brouillon validé
+                  Enregistré localement
                 </Badge>
               </div>
             </div>
@@ -180,7 +193,7 @@ function FormulaireFccPage() {
                   </CardDescription>
                 </div>
                 <div className="rounded-2xl bg-[#fff45f]/45 px-4 py-3 text-sm font-bold text-[#2b001b] ring-1 ring-[#fff45f]">
-                  {commandeNumber}
+                  {createdCommandeNumber || commandeNumber}
                 </div>
               </div>
             </CardHeader>
@@ -242,10 +255,10 @@ function FormulaireFccPage() {
 
                 <div className="flex flex-col gap-4 bg-[#fffdf0] p-7 sm:flex-row sm:items-center sm:justify-between sm:p-9">
                   <p className="max-w-xl text-sm leading-6 text-[#594a54]">
-                    En validant, la demande sera prête à alimenter l’onglet Commandes Clients / FCC et à générer la fiche de commande.
+                    En validant, la demande sera enregistrée localement et affichée dans l’onglet Commandes Clients / FCC.
                   </p>
-                  <Button type="submit" size="lg" className="h-12 rounded-full bg-[#2b001b] px-7 text-white hover:bg-[#43002a]">
-                    Créer la demande <ArrowRight className="ml-2 h-4 w-4" />
+                  <Button type="submit" size="lg" className="h-12 rounded-full bg-[#2b001b] px-7 text-white hover:bg-[#43002a]" disabled={submitted}>
+                    {submitted ? "Commande enregistrée" : "Créer la demande"} <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 </div>
               </form>
